@@ -15,6 +15,7 @@ router.post('/', async (request, response) => {
             object: request.body.object,
             price: request.body.price,
             image: request.body.image, // Include image URL in the new cart item
+            upi: request.body.upi,
         };
         const cartItem = await Cart.create(newCartItem);
         return response.status(201).send(cartItem);

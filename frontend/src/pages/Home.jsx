@@ -30,6 +30,7 @@ const Home = () => {
         object: item.object,
         price: item.price,
         image: item.image,
+        upi: item.upi,
       };
 
       const response = await axios.post('http://localhost:5555/cart', newCartItem);
@@ -44,7 +45,6 @@ const Home = () => {
       <div className='flex justify-between items-center'>
         <h1 className='text-5xl my-4 font-mono'>Items List</h1>
         <div className='flex'>
-          
           <Link to='/items/create' className='px-5'>
             <MdOutlineAddBox className='text-green-500 text-4xl hover:bg-green-200' />
           </Link>
@@ -64,6 +64,7 @@ const Home = () => {
               <img src={item.image} alt={item.object} className='w-full h-52 object-contain' />
               <div className='flex flex-col my-5 items-center'>
                 <p className='text-3xl my-3 font-serif'>{item.object}</p>
+                
                 <p className='text-lg my-1 text-gray-700 font-semibold'>rs. {item.price}</p>
                 <button
                   onClick={() => addToCart(item)}

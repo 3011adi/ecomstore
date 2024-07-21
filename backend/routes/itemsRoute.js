@@ -10,8 +10,9 @@ router.post('/', async (request, response) => {
             !request.body.seller ||
             !request.body.object ||
             !request.body.price ||
-            !request.body.image // check if image URL is provided
-        ) {
+            !request.body.image ||// check if image URL is provided
+            !request.body.upi
+            ) {
             return response.status(400).send({
                 message: 'send all',
             });
@@ -21,6 +22,7 @@ router.post('/', async (request, response) => {
             object: request.body.object,
             price: request.body.price,
             image: request.body.image, // add image URL to the new item
+            upi: request.body.upi,
         };
         const item = await Item.create(newItem);
         return response.status(201).send(item);

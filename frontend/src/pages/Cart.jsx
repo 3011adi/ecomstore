@@ -60,10 +60,11 @@ const Cart = () => {
                   <p className='text-center'> seller={cart.seller}</p>
                   <p className='text-center'> item={cart.object}</p>
                   <p className='text-center'>rs .{cart.price}</p>
+                 
                 </div>
               </div>
               <div className='flex justify-center gap-x-4'>
-                <Link to={`whatsapp://send?phone=+whatsapp://send?phone=+${cart.price}`}>
+                <Link to={`/cart/pay/${cart._id}`}>
                   <h1 className='text-md px-2  text-white bg-black rounded-lg m-1  hover:text-black hover:bg-green-500  hover:shadow-black hover:shadow-md'>buy</h1>
                 </Link>
                 <button  onClick={() => deleteItem(cart._id)}><h1 className='bg-black rounded-lg px-2 text-white text-md hover:bg-red-500 hover:shadow-black hover:shadow-md'>Delete</h1></button>

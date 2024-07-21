@@ -10,6 +10,7 @@ const CreateItems = () => {
   const [price, setPrice] = useState('');
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState('');
+  const [upi,setUpi]=useState('');
   const navigate = useNavigate();
 
   const handleSaveBook = () => {
@@ -18,6 +19,7 @@ const CreateItems = () => {
       object,
       price,
       image,
+      upi
     };
     setLoading(true);
     axios
@@ -74,6 +76,16 @@ const CreateItems = () => {
           type='text'
           value={image}
           onChange={(e) => setImage(e.target.value)}
+          className='border-2 border-gray-500 px-4 py-2  w-full '
+        />
+        
+      </div>
+      <div className='my-4'>
+        <label className='text-xl mr-4 text-gray-500'>upi id</label>
+        <input
+          type='text'
+          value={upi}
+          onChange={(e) => setUpi(e.target.value)}
           className='border-2 border-gray-500 px-4 py-2  w-full '
         />
         

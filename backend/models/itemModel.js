@@ -14,6 +14,10 @@ const itemSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+    upi: {
+      type: String,
+      required: true,
+    },
     image: { // New image field
       type: String,
       required: true,
@@ -33,6 +37,10 @@ const cartSchema = mongoose.Schema(
     },
     price: {
       type: Number,
+      required: true,
+    },
+    upi: {
+      type: String,
       required: true,
     },
     image: { // New image field
