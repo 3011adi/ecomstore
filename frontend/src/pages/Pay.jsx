@@ -12,7 +12,7 @@ const Pay = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/cart/${id}`)
+      .get(`https://ecomstore-7nii.onrender.com/cart/${id}`)
       .then((response) => {
         setCart(response.data); // corrected here
         setLoading(false);

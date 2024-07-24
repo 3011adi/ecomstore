@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:5555/items')
+      .get('https://ecomstore-7nii.onrender.com/items')
       .then((response) => {
         setItems(response.data.data);
         setLoading(false);
@@ -33,7 +33,7 @@ const Home = () => {
         upi: item.upi,
       };
 
-      const response = await axios.post('http://localhost:5555/cart', newCartItem);
+      const response = await axios.post('https://ecomstore-7nii.onrender.com/cart', newCartItem);
       console.log('Item added to cart:', response.data);
     } catch (error) {
       console.error('Error adding item to cart:', error);

@@ -11,7 +11,7 @@ const Cart = () => {
 
   const deleteItem = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:5555/cart/${id}`);
+      const response = await axios.delete(`https://ecomstore-7nii.onrender.com/cart/${id}`);
 
       if (!response.status === 200) {
         throw new Error('Error deleting item');
@@ -27,7 +27,7 @@ const Cart = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get('http://localhost:5555/cart')
+      .get('https://ecomstore-7nii.onrender.com/cart')
       .then((response) => {
         setCarts(response.data.data);
         setLoading(false);
@@ -43,7 +43,7 @@ const Cart = () => {
       <BackButton />
       <div className='flex justify-between items-center'>
         <h1 className='text-5xl my-6 px-8 font-mono'>cart </h1>
-        <h2 className='bg-green-500 rounded-md text-xl font-thin text-white px-2 shadow-lg shadow-green-500 '>Total: rs. {totalPrice}</h2>
+        <h2 className='bg-green-500 roundeds-md text-xl font-thin text-white px-2 shadow-lg shadow-green-500 '>Total: rs. {totalPrice}</h2>
       </div>
       {loading ? (
         <Spinner />

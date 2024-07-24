@@ -23,7 +23,7 @@ const CreateItems = () => {
     };
     setLoading(true);
     axios
-      .post('http://localhost:5555/items', data)
+      .post('https://ecomstore-7nii.onrender.com/items', data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Book Created successfully', { variant: 'success' });
