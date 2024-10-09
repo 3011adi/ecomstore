@@ -4,6 +4,7 @@ import cors from 'cors';
 import { PORT, mangoDBURL } from "./config.js";
 import itemsRoute from "./routes/itemsRoute.js";
 import cartRoute from "./routes/cartRoute.js"; // Import the cart routes
+import authRoute from "./routes/authRoute.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.get('/', (request, response) => {
 
 app.use('/items', itemsRoute);
 app.use('/cart', cartRoute); // Use the cart routes
+app.use('/signup',authRoute);
 
 mongoose.connect(mangoDBURL)
     .then(() => {

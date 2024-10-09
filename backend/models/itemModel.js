@@ -50,5 +50,22 @@ const cartSchema = mongoose.Schema(
   }
 );
 
+const UserSchema = mongoose.Schema({
+  name: {
+      type: String,
+      required: true,
+  },
+  email: {
+      type: String,
+      required: true,
+      unique: true,
+  },
+  password: {
+      type: String,
+      required: true,
+  },
+});
+
 export const Item = mongoose.model('Item', itemSchema);
 export const Cart = mongoose.model('Cart', cartSchema);
+export const User = mongoose.model('User', UserSchema);

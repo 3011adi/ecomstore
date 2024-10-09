@@ -4,7 +4,7 @@ import Spinner from '../components/Spinner';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { MdOutlineAddBox } from 'react-icons/md';
-
+//adi👀
 const Home = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -46,6 +46,9 @@ const Home = () => {
         <h1 className='text-5xl my-4 font-mono'>Items List</h1>
         <div className='flex'>
           <Link to='/items/create' className='px-5'>
+            <MdOutlineAddBox className='text-green-500 text-4xl hover:bg-green-200' />
+          </Link>
+          <Link to='/signup' className='px-5'>
             <MdOutlineAddBox className='text-green-500 text-4xl hover:bg-green-200' />
           </Link>
           <Link to='/cart'>

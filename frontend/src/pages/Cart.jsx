@@ -11,6 +11,7 @@ const Cart = () => {
 
   const deleteItem = async (id) => {
     try {
+      setLoading(true)
       const response = await axios.delete(`https://ecomstore-7nii.onrender.com/cart/${id}`);
 
       if (!response.status === 200) {
@@ -19,6 +20,7 @@ const Cart = () => {
 
       // Remove the deleted item from the local state
       setCarts(carts.filter(cart => cart._id !== id));
+      setLoading(false)
     } catch (err) {
       setError(err.message);
     }
