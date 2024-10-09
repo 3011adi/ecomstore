@@ -11,7 +11,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5555/signup', {
+      const response = await axios.post('https://ecomstore-7nii.onrender.com/signup', {
         name,
         email,
         password,
