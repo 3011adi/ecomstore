@@ -27,26 +27,34 @@ const itemSchema = mongoose.Schema(
 
 const cartSchema = mongoose.Schema(
   {
-    seller: {
-      type: String,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
+      unique: true
     },
-    object: {
-      type: String,
-      required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
-    upi: {
-      type: String,
-      required: true,
-    },
-    image: { // New image field
-      type: String,
-      required: true,
-    },
+    items: [{
+      seller: {
+        type: String,
+        required: true,
+      },
+      object: {
+        type: String,
+        required: true,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
+      upi: {
+        type: String,
+        required: true,
+      },
+      image: {
+        type: String,
+        required: true,
+      },
+    }]
   }
 );
 
@@ -64,6 +72,10 @@ const UserSchema = mongoose.Schema({
       type: String,
       required: true,
   },
+  cart: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Cart'
+  }
 });
 
 export const Item = mongoose.model('Item', itemSchema);

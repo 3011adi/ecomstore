@@ -25,6 +25,13 @@ const Home = () => {
 
   const addToCart = async (item) => {
     try {
+      const userId = localStorage.getItem('userId');
+      if (!userId) {
+        console.error('User not logged in');
+        // Redirect to login page or show login prompt
+        return;
+      }
+
       const newCartItem = {
         seller: item.seller,
         object: item.object,
@@ -33,7 +40,7 @@ const Home = () => {
         upi: item.upi,
       };
 
-      const response = await axios.post('https://ecomstore-7nii.onrender.com/cart', newCartItem);
+      const response = await axios.post(`https://ecomstore-7nii.onrender.com/cart/${userId}`, newCartItem);
       console.log('Item added to cart:', response.data);
     } catch (error) {
       console.error('Error adding item to cart:', error);

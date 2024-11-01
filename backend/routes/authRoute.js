@@ -1,6 +1,7 @@
 import express from "express";
 import { User } from "../models/itemModel.js";
 import bcrypt from "bcryptjs";
+import { Cart } from "../models/itemModel.js";
 
 const router = express.Router();
 
@@ -59,6 +60,13 @@ router.post('/login', async (request, response) => {
       });
     }
     
+    // Check if user has a cart, if not create one
+    if (!user.cart) {
+      const newCart = await Cart.create({ user: user._id, items: [] });
+      user.cart = newCart._id;
+      await user.save();
+    }
+    
     // If login is successful
     return response.status(200).send({
       message: 'Login successful',
@@ -66,6 +74,7 @@ router.post('/login', async (request, response) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        cartId: user.cart
       },
     });
   } catch (error) {

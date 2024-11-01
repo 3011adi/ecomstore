@@ -10,10 +10,12 @@ const LogIn = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5555/signup/login', {
+      const response = await axios.post('https://ecomstore-7nii.onrender.com/signup/login', {
         email,
         password,
       });
+
+      localStorage.setItem('userId', response.data.user.id);
 
       setMessage(response.data.message);
     } catch (error) {

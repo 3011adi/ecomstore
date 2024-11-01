@@ -27,17 +27,25 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    setLoading(true);
-    axios
-      .get('https://ecomstore-7nii.onrender.com/cart')
-      .then((response) => {
+    const fetchCart = async () => {
+      const userId = localStorage.getItem('userId');
+      if (!userId) {
+        setError('User not logged in');
+        return;
+      }
+
+      setLoading(true);
+      try {
+        const response = await axios.get(`https://ecomstore-7nii.onrender.com/cart/${userId}`);
         setCarts(response.data.data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchCart();
   }, []);
   const totalPrice = carts.reduce((total, cart) => total + cart.price, 0);
   return (
