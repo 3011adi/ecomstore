@@ -93,21 +93,32 @@ router.put('/:id', async (request, response) => {
     }
 });
 
-router.delete('/:id', async (request, response) => {
+router.delete('/:userId/:itemId', async (request, response) => {
     try {
-        const { id } = request.params;
-        const result = await Cart.findByIdAndDelete(id);
-
-        if (!result) {
-            return response.status(404).json({ message: 'Cart item not found' });
+        const { userId, itemId } = request.params;
+        
+        const user = await User.findById(userId);
+        if (!user) {
+            return response.status(404).send({ message: 'User not found' });
         }
 
-        return response.status(200).send({ message: 'Cart item deleted' });
+        const cart = await Cart.findById(user.cart);
+        if (!cart) {
+            return response.status(404).send({ message: 'Cart not found' });
+        }
+
+        // Find and remove the specific item from the cart items array
+        cart.items = cart.items.filter(item => item._id.toString() !== itemId);
+        await cart.save();
+
+        return response.status(200).send({ message: 'Item removed from cart' });
     } catch (error) {
         console.log(error.message);
         response.status(500).send({ message: error.message });
     }
 });
+
+
 
 
 export default router;

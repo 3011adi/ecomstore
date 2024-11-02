@@ -11,20 +11,25 @@ const Cart = () => {
 
   const deleteItem = async (id) => {
     try {
-      setLoading(true)
-      const response = await axios.delete(`https://ecomstore-7nii.onrender.com/cart/${id}`);
+        const userId = localStorage.getItem('userId');
+        if (!userId) {
+            setError('User not logged in');
+            return;
+        }
 
-      if (!response.status === 200) {
-        throw new Error('Error deleting item');
-      }
+        setLoading(true);
+        const response = await axios.delete(`https://ecomstore-7nii.onrender.com/cart/${userId}/${id}`);
 
-      // Remove the deleted item from the local state
-      setCarts(carts.filter(cart => cart._id !== id));
-      setLoading(false)
+        if (response.status === 200) {
+            // Remove the deleted item from the local state
+            setCarts(carts.filter(cart => cart._id !== id));
+        }
     } catch (err) {
-      setError(err.message);
+        setError(err.message);
+    } finally {
+        setLoading(false);
     }
-  };
+};
 
   useEffect(() => {
     const fetchCart = async () => {
