@@ -76,15 +76,15 @@ const Home = () => {
       />
       <FaSearch className="absolute left-3 top-2.5 text-green-400" />
     </div>
-    <div className="flex items-center justify-center space-x-4">
+    <div className="flex items-center  w-full justify-center space-x-8">
       <Link to="/signup" className="transition-transform hover:scale-110">
-        <FaUserPlus className="text-green-600 text-xl sm:text-2xl" title="Sign Up" />
+        <FaUserPlus className="text-green-600 text-3xl " title="Sign Up" />
       </Link>
       <Link to="/items/create" className="transition-transform hover:scale-110">
-        <MdOutlineAddBox className="text-green-600 text-xl sm:text-3xl" title="Add Item" />
+        <MdOutlineAddBox className="text-green-600 text-3xl " title="Add Item" />
       </Link>
       <Link to="/cart" className="transition-transform hover:scale-110">
-        <FaShoppingCart className="text-green-600 text-xl sm:text-2xl" title="Cart" />
+        <FaShoppingCart className="text-green-600 text-3xl " title="Cart" />
       </Link>
     </div>
   </div>
